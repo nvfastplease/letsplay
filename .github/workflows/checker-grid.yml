@@ -1,6 +1,7 @@
 name: checker grid
 
 on:
+  push:
   schedule:
     - cron: "0 0 */2 * *"  # Run every 2 days
 
@@ -10,12 +11,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3  
-      - name: run
-        run: |
-          echo "Today is: $(date +%F)" > foo.txt
-          git config user.name "checker-grid"
-          git config user.email "111596906+nvfastplease@users.noreply.github.com"
-          git add .
-          git commit -m "New tile @ $(date +'%Y %b %e, %l:%M %p')"
-          git push
+      - uses: actions/checkout@v4
+      - run: |
+          # echo "Today is: $(date +%F)" > foo.txt
+          echo "${GITHUB_ACTOR}"
+          # git config user.name "checker-grid"
+          # git config user.email "{{gh.actor}}@users.noreply.github.com"
+          # git commit -am "New tile @ $(date +'%Y %b %e, %l:%M %p')"
+          # git push
