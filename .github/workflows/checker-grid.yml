@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          # echo "Today is: $(date +%F)" > foo.txt
-          echo "${GITHUB_ACTOR}"
-          # git config user.name "checker-grid"
-          # git config user.email "{{gh.actor}}@users.noreply.github.com"
-          # git commit -am "New tile @ $(date +'%Y %b %e, %l:%M %p')"
-          # git push
+          the_time=$(date +'%Y %b %e, %l:%M %p')
+          echo "Time: $the_time" > foo.txt
+          git config user.name "checker-grid"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"  # ref: https://stackoverflow.com/a/72981982/22294664   https://stackoverflow.com/questions/69839851/github-actions-copy-git-user-name-and-user-email-from-last-commit
+          git commit -am "New tile @ $the_time"
+          git push
